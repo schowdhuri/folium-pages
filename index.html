@@ -18,9 +18,19 @@
     <link rel="apple-touch-icon" href="/icons/icon-192.png" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!--
+      S6-T1 perf note: a static <link rel="preload"> for OpenCV is not viable
+      here because @techstark/opencv-js is loaded via a dynamic import()
+      (see src/hooks/useOpenCV.ts) and Vite content-hashes the output filename
+      (e.g. opencv-BxKq8v3F.js). The hash changes on every build, so any
+      hard-coded href would immediately go stale. The runtime caching strategy
+      in vite.config.ts (Workbox CacheFirst for /opencv.*\.js$/) handles
+      subsequent loads after the first visit.
+    -->
     <title>Folium — Document Scanner</title>
-    <script type="module" crossorigin src="/assets/index-DIOwC0Tz.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-cNUvoA_i.css">
+    <script type="module" crossorigin src="/assets/index-NK-XSU1x.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/pdf-M1tclrKX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-84V38kV_.css">
   <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
